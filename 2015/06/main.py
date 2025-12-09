@@ -1,13 +1,13 @@
+from utils import AOCSolution
 import numpy as np
 import re
 
-instruction_regex = re.compile(r"^(turn on|turn off|toggle) (\d+),(\d+) through (\d+),(\d+)$")
-# PART 1
-def part1():
-    count:int = 0
-    matrix = np.zeros((1000,1000),dtype=bool)
-    with open("input.txt", "r") as f:
-        for line in f:
+class Day06(AOCSolution):
+    def part1(self) -> None:
+        instruction_regex = re.compile(r"^(turn on|turn off|toggle) (\d+),(\d+) through (\d+),(\d+)$")
+        count:int = 0
+        matrix = np.zeros((1000,1000),dtype=bool)
+        for line in self.lines:
             instruction = instruction_regex.match(line)
             if instruction:
                 instruction = instruction.groups()
@@ -18,16 +18,14 @@ def part1():
                     matrix[x1:x2+1,y1:y2+1] = False
                 elif instruction[0] == "toggle":
                     matrix[x1:x2+1,y1:y2+1] = np.logical_not(matrix[x1:x2+1,y1:y2+1])
-    count = np.sum(matrix)
-    return count
+        count = np.sum(matrix)
+        print(count)
 
-
-# PART 2
-def part2():
-    count:int = 0
-    matrix = np.zeros((1000,1000),dtype=int)
-    with open("input.txt", "r") as f:
-        for line in f:
+    def part2(self) -> None:
+        instruction_regex = re.compile(r"^(turn on|turn off|toggle) (\d+),(\d+) through (\d+),(\d+)$")
+        count:int = 0
+        matrix = np.zeros((1000,1000),dtype=int)
+        for line in self.lines:
             instruction = instruction_regex.match(line)
             if instruction:
                 instruction = instruction.groups()
@@ -39,7 +37,8 @@ def part2():
                     matrix[matrix < 0] = 0
                 elif instruction[0] == "toggle":
                     matrix[x1:x2+1,y1:y2+1] += 2
-    count = np.sum(matrix)
-    return count
+        count = np.sum(matrix)
+        print(count)
 
-print(part2())
+if __name__ == "__main__":
+    Day06().run()

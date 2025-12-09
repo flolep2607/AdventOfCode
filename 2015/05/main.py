@@ -1,10 +1,11 @@
-# PART 1
-def part1():
-    count:int = 0
-    voewls = "aeiou"
-    bad_parts=["ab","cd","pq","xy"]
-    with open("input.txt", "r") as f:
-        for line in f:
+from utils import AOCSolution
+
+class Day05(AOCSolution):
+    def part1(self) -> None:
+        count:int = 0
+        voewls = "aeiou"
+        bad_parts=["ab","cd","pq","xy"]
+        for line in self.lines:
             count_voewls = 0
             consecutive = False
             bad = False
@@ -17,14 +18,11 @@ def part1():
                     bad = True
             if count_voewls>=3 and consecutive and not bad:
                 count+=1
-    return count
+        print(count)
 
-
-# PART 2
-def part2():
-    count:int = 0
-    with open("input.txt", "r") as f:
-        for line in f:
+    def part2(self) -> None:
+        count:int = 0
+        for line in self.lines:
             consecutive1 = False
             consecutive2 = False
             for index in range(len(line)):
@@ -38,6 +36,7 @@ def part2():
                 
             if consecutive1 and consecutive2:
                 count+=1
-    return count
+        print(count)
 
-print(part2())
+if __name__ == "__main__":
+    Day05().run()

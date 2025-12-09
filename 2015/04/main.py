@@ -1,20 +1,20 @@
+from utils import AOCSolution
 from hashlib import md5
 
-input = "ckczppom"
+class Day04(AOCSolution):
+    def part1(self) -> None:
+        input_str = "ckczppom"
+        count:int = 0
+        while not md5((input_str+str(count)).encode()).hexdigest().startswith("0"*5):
+            count += 1
+        print(count)
 
-# PART 1
-def part1():
-    count:int = 0
-    while not md5((input+str(count)).encode()).hexdigest().startswith("0"*5):
-        count += 1
-    return count
+    def part2(self) -> None:
+        input_str = "ckczppom"
+        count:int = 0
+        while not md5((input_str+str(count)).encode()).hexdigest().startswith("0"*6):
+            count += 1
+        print(count)
 
-
-# PART 2
-def part2():
-    count:int = 0
-    while not md5((input+str(count)).encode()).hexdigest().startswith("0"*6):
-        count += 1
-    return count
-
-print(part2())
+if __name__ == "__main__":
+    Day04().run()

@@ -1,25 +1,25 @@
-# PART 1
-def part1():
-    count:int = 0
-    with open("input.txt", "r") as f:
-        for c in f.read():
+from utils import AOCSolution
+
+class Day01(AOCSolution):
+    def part1(self) -> None:
+        count:int = 0
+        for c in self.input:
             if c=='(':
                 count+=1
             elif c==')':
                 count-=1
-    return count
+        print(count)
 
-
-# PART 2
-def part2():
-    count:int = 0
-    with open("input.txt", "r") as f:
-        for index,c in enumerate(f.read()):
+    def part2(self) -> None:
+        count:int = 0
+        for index,c in enumerate(self.input):
             if c=='(':
                 count+=1
             elif c==')':
                 count-=1
             if count==-1:
-                return index+1
+                print(index+1)
+                return
 
-print(part2())
+if __name__ == "__main__":
+    Day01().run()

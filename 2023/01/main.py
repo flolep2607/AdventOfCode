@@ -1,8 +1,9 @@
-# PART 1
-def part1():
-    count:int = 0
-    with open("input.txt", "r") as f:
-        for line in f:
+from utils import AOCSolution
+
+class Day01(AOCSolution):
+    def part1(self) -> None:
+        count:int = 0
+        for line in self.lines:
             first: int = -1
             last: int = -1
             # complexity: O(n)
@@ -12,19 +13,16 @@ def part1():
                         first = int(letter)
                     last = int(letter)
             count += first * 10 + last
-    return count
+        print(count)
 
-
-# PART 2
-def part2():
-    count:int = 0
-    numbers: list[str]= ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
-    def getNumber(part: str) -> int or None:
-        for i,number in enumerate(numbers):
-            if part.startswith(number):
-                return i
-    with open("input.txt", "r") as f:
-        for line in f:
+    def part2(self) -> None:
+        count:int = 0
+        numbers: list[str]= ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
+        def getNumber(part: str) -> int or None:
+            for i,number in enumerate(numbers):
+                if part.startswith(number):
+                    return i
+        for line in self.lines:
             first: int = -1
             last: int = -1
             # complexity: O(n)
@@ -40,6 +38,7 @@ def part2():
                             first = number
                         last = number
             count += first * 10 + last
-    return count
+        print(count)
 
-print(part2())
+if __name__ == "__main__":
+    Day01().run()

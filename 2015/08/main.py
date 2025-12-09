@@ -1,8 +1,9 @@
-# PART 1
-def part1():
-    count:int = 0
-    with open("input.txt", "r") as f:
-        for line in f.readlines():
+from utils import AOCSolution
+
+class Day08(AOCSolution):
+    def part1(self) -> None:
+        count:int = 0
+        for line in self.lines:
             count+=2
             index=1
             while index < len(line)-1:
@@ -15,18 +16,16 @@ def part1():
                         index+=2
                 else:
                     index+=1
-    return count
+        print(count)
 
-
-# PART 2
-def part2():
-    count:int = 0
-    with open("input.txt", "r") as f:
-        for line in f.readlines():
+    def part2(self) -> None:
+        count:int = 0
+        for line in self.lines:
             count+=2
             for char in line:
                 if char == "\\" or char == "\"":
                     count+=1
-    return count
+        print(count)
 
-print(part2())
+if __name__ == "__main__":
+    Day08().run()
